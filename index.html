@@ -92,13 +92,13 @@
         //把excel除了標頭以外的資料都放入tArray
         for(var k=0;k<list.length;k++){
           //把row data 放入一維陣列
-          var rowdata=[list[k].date,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
+          var rowdata=[list[k].reportdate,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
           //把row data 放入二維陣列
           tArray[k]=[rowdata[0],rowdata[1],rowdata[2],rowdata[3],rowdata[4],rowdata[5]];
-          //tArray[k]=[list[k].date,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
+          //tArray[k]=[list[k].reportdate,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
         }
       	console.log(list);
-        alert('941');
+        alert('41');
         alert(tArray[111]);
 	alert(tArray[111][1]);
 	alert(tArray[111][0]);
