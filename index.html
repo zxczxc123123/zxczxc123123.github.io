@@ -1,0 +1,180 @@
+
+<html>
+<head>
+  <title>CEO報告下載</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script> 
+    
+      function loadexcel(){ 
+      var testtemp='test';
+      document.myForm.report_select.length=0;
+      document.getElementById("report_select").options[0]=new Option(glo, glo);
+      
+      // download();
+      alert("頁面載入完成"); 
+      } 
+    </script>
+</head>
+
+<body style="background-color:rgba(233, 236, 239);"onload="loadexcel()">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+  <script>
+  
+  </script>
+
+<script>
+  function download(){
+    document.myForm.report_select.length=0;
+    document.getElementById("report_select").options[0]=new Option("zxczxc", "zxczxc");
+    // document.getElementById("index_test").options[0]="zxc";
+  }
+</script>
+<script>
+  function loadFile(filePath) {
+    
+    var result = null;
+    var xmlhttp = new XMLHttpRequest();
+    
+    xmlhttp.open("GET", filePath,false);
+    
+    xmlhttp.send();
+    // alert(xmlhttp.status);
+    if (xmlhttp.status==200) {
+      result = xmlhttp.responseText;
+    }
+    // alert(result);
+    return result;
+  }
+  var myStuff = loadFile("files/hello.txt");
+  alert(myStuff);
+</script>
+<script>
+  var glo="glo123";
+  
+  function filePicked() {
+    var oFile = document.getElementById('my_file_input').files[0];
+    // Get The File From The Input
+    console.log(oFile);
+    var sFilename = oFile.name;
+    var reader = new FileReader();
+      reader.onload = function(e) {
+        var data = e.target.result;
+        var workbook = XLSX.read(data, {
+          type: 'binary'
+        });
+        workbook.SheetNames.forEach(function(sheetName) {
+          // Here is your object
+          var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+          var json_object = JSON.stringify(XL_row_object);
+          json_object = json_object.replace('[', '');
+          json_object = json_object.replace(']', '');
+          // console.log(json_object);
+          // alert(json_object);
+
+          tempjs=json_object;
+          arr=tempjs.split("},");//切割獲得的excel json格式
+
+          var tArray = new Array(); //先宣告一維
+          for(var k=0;k<arr.length;k++){ //一維長度為i,i為變數，可以根據實際情況改變
+            tArray[k]=new Array(); //宣告二維，每一個一維陣列裡面的一個元素都是一個陣列；
+            for(var j=0;j<3;j++){ //一維陣列裡面每個元素陣列可以包含的數量p，p也是一個變數；
+              tArray[k][j]=""; //這裡將變數初始化，我這邊統一初始化為空，後面在用所需的值覆蓋裡面的值
+            }
+          }
+          //把excel除了標頭以外的資料都放入tArray
+          for(var k=0;k<arr.length;k++){ //把前面陣列補回}
+            if(k<arr.length-1){
+              arr[k]=arr[k]+"}"
+            }
+            var obj = JSON.parse(arr[k]);
+            //把row data 放入一維陣列
+            var rowdata=[obj.test1,obj.test2,obj.test3];
+            //把row data 放入二維陣列
+            tArray[k]=[rowdata[0],rowdata[1],rowdata[2]];
+          }
+          //去抓取我要的資料 判斷日期 index 等等
+          
+        })
+        
+      };
+      reader.onerror = function(ex) {
+        console.log(ex);
+      };
+      reader.readAsBinaryString(oFile);
+  }
+</script>
+
+  
+  <div style="width:100%">
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark main-nav">
+      <ul class="nav navbar-nav flex-fill w-100 flex-nowrap">
+        <li class="nav-item" style="width:5%"></li>
+
+        <li class="nav-item" style="width:15%">
+          <a class="nav-link" href="{{ url }}loading"><span class="lead" Align="center" style="font-size:16px">User:
+              Testuser&nbsp;&nbsp;&nbsp;&nbsp; 1.0</span></a>
+        </li>
+
+      </ul>
+    </nav>
+
+
+  </div>
+  <form action="{{ url }}JS_index_fun" method="POST" name="myForm">
+  <div class="jumbotron" style="width:100%">
+    <div class="row" style="width:100%">
+      
+      <div class="col-auto" style="width:50%">
+        <select class="form-control form-control-sm"name="report_select"id="report_select" style="height: 50px;"required>
+          <option name="index_test" value="index_test">123</option>
+          {% for i in report_list %}
+          <option name="index_{{i[1]}}" value="index_{{i[1]}}">{{i[0]}}</option>
+          {% endfor %}
+        </select>
+        <div style="height: 5px">
+          <div class="container">
+            {% for message in get_flashed_messages() %}
+            {% if message!="" %}
+                <div class="alert alert-warning">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                      {{ message }}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% block page_content %}{% endblock %}
+               
+               
+
+
+               
+          </div>
+        </div>
+      </div>
+      <button type="button" name="Download" id="Download" class="btn btn-sm btn-outline-dark" style="height: 50px;width: 100px;" onclick="download()">Download</button>
+      <button type="button" name="loadfile" id="loadfile" class="btn btn-sm btn-outline-dark" style="height: 50px;width: 100px;" onclick="loadFile('hello.txt')">loadfile</button>
+      
+      <input type="file" id="my_file_input" onchange="filePicked()">
+      <table id='my_file_output'></table>
+    </div>
+  </div>
+  </form>
+
+</body>
+
+</html>
