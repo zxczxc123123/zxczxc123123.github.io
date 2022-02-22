@@ -75,20 +75,36 @@
         var workbook = XLSX.read(data, {type: 'array'});
         var sheets = workbook.Sheets,
         list = [];
-      for (var sheet in sheets) {
-          if (sheets.hasOwnProperty(sheet)) {
-            list = list.concat(XLSX.utils.sheet_to_json(sheets[sheet]));
+        for (var sheet in sheets) {
+            if (sheets.hasOwnProperty(sheet)) {
+              list = list.concat(XLSX.utils.sheet_to_json(sheets[sheet]));
+            }
+        }
+        //list是excel的資料
+        //把excel資料放到array
+        var tArray = new Array(); //先宣告一維
+        for(var k=0;k<list.length;k++){ 
+          tArray[k]=new Array(); //宣告二維，每一個一維陣列裡面的一個元素都是一個陣列；
+          for(var j=0;j<6;j++){ 
+            tArray[k][j]=""; //這裡將變數初始化，我這邊統一初始化為空，後面在用所需的值覆蓋裡面的值
           }
-      }
-        console.log(list);
-        alert(list[1].test2);
-	alert(list[0].日期);
-	alert('123')
+        }
+        //把excel除了標頭以外的資料都放入tArray
+        for(var k=0;k<list.length;k++){
+          //把row data 放入一維陣列
+          //var rowdata=[list[k].日期(當周),list[k].Topic,list[k].報告者,list[k].週數,list[k].report_upload,list[k].report_path];
+          //把row data 放入二維陣列
+          //tArray[k]=[rowdata[0],rowdata[1],rowdata[2],rowdata[3],rowdata[4],rowdata[5]];
+          tArray[k]=[list[k].日期(當周),list[k].Topic,list[k].報告者,list[k].週數,list[k].report_upload,list[k].report_path];
+        }
+        alert(tArray[0]);
+        alert(tArray[0][0]);
+        alert('123');
       }
     };
     xmlhttp.send();
   }
-  var myStuff = loadFileV2("files/testhtml.xlsx");
+  var myStuff = loadFileV2("files/CEO_tracking_list.xlsx");
   // alert(myStuff);
 </script>
 
@@ -197,8 +213,8 @@
         </div>
       </div>
       <button type="button" name="Download" id="Download" class="btn btn-sm btn-outline-dark" style="height: 50px;width: 100px;" onclick="download()">Download</button>
-      <input type="file" id="my_file_input" onchange="filePicked()">
-      <table id='my_file_output'></table>
+      <!-- <input type="file" id="my_file_input" onchange="filePicked()">
+      <table id='my_file_output'></table> -->
     </div>
   </div>
   </form>
