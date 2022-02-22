@@ -68,7 +68,8 @@
     
     var result = null;
     var xmlhttp = new XMLHttpRequest();
-    
+    alert('456');
+    xmlhttp.responseType='blob'
     xmlhttp.open("GET", filePath,false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
