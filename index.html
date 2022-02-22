@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script> 
-    
+      var glo="glo123";
       function loadexcel(){ 
       var testtemp='test';
       document.myForm.report_select.length=0;
@@ -95,8 +95,9 @@
           //var rowdata=[list[k].日期(當周),list[k].Topic,list[k].報告者,list[k].週數,list[k].report_upload,list[k].report_path];
           //把row data 放入二維陣列
           //tArray[k]=[rowdata[0],rowdata[1],rowdata[2],rowdata[3],rowdata[4],rowdata[5]];
-          tArray[k]=[list[k].日期(當周),list[k].Topic,list[k].報告者,list[k].週數,list[k].report_upload,list[k].report_path];
+          tArray[k]=[list[k].Date,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
         }
+        alert('456');
         alert(tArray[0]);
         alert(tArray[0][0]);
         alert('123');
@@ -109,7 +110,6 @@
 </script>
 
 <script>
-  var glo="glo123";
   
   function filePicked() {
     var oFile = document.getElementById('my_file_input').files[0];
