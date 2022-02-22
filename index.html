@@ -59,20 +59,53 @@
     // alert(result);
     return result;
   }
-  var myStuff = loadFile("files/testhtml.xlsx");
-  alert(myStuff);
+  // var myStuff = loadFile("files/hello.txt");
+  // alert(myStuff);
 </script>
+
+<script>
+  function loadFileV2(filePath) {
+    
+    var result = null;
+    var xmlhttp = new XMLHttpRequest();
+    
+    xmlhttp.open("GET", filePath,false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      result = xmlhttp.responseText;
+    }
+    // alert(result);
+    // return result;
+    var data = result;
+    var workbook = XLSX.read(data, {
+      type: 'binary'
+    });
+    workbook.SheetNames.forEach(function(sheetName) {
+      // Here is your object
+      var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+      var json_object = JSON.stringify(XL_row_object);
+      // json_object = json_object.replace('[', '');
+      // json_object = json_object.replace(']', '');
+      // console.log(json_object);
+      alert('123');
+      alert(json_object);
+    })
+  }
+  var myStuff = loadFileV2("files/testhtml.xlsx");
+  // alert(myStuff);
+</script>
+
 <script>
   var glo="glo123";
   
   function filePicked() {
     var oFile = document.getElementById('my_file_input').files[0];
     // Get The File From The Input
-    console.log(oFile);
     var sFilename = oFile.name;
     var reader = new FileReader();
       reader.onload = function(e) {
         var data = e.target.result;
+        alert(data);
         var workbook = XLSX.read(data, {
           type: 'binary'
         });
@@ -167,8 +200,6 @@
         </div>
       </div>
       <button type="button" name="Download" id="Download" class="btn btn-sm btn-outline-dark" style="height: 50px;width: 100px;" onclick="download()">Download</button>
-      <button type="button" name="loadfile" id="loadfile" class="btn btn-sm btn-outline-dark" style="height: 50px;width: 100px;" onclick="loadFile('hello.txt')">loadfile</button>
-      
       <input type="file" id="my_file_input" onchange="filePicked()">
       <table id='my_file_output'></table>
     </div>
