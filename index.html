@@ -65,32 +65,26 @@
 
 <script>
   function loadFileV2(filePath) {
-    
     var result = null;
     var xmlhttp = new XMLHttpRequest();
-    alert('456');
-    xmlhttp.responseType='blob'
-    xmlhttp.open("GET", filePath,false);
+    xmlhttp.open("GET", filePath,true);
+    xmlhttp.responseType = 'arraybuffer';
+    xmlhttp.onload = function(e) {
+      if(xmlhttp.status == 200) {
+        var data = new Uint8Array(xmlhttp.response)
+        var workbook = XLSX.read(data, {type: 'array'});
+        var sheets = workbook.Sheets,
+        list = [];
+      for (var sheet in sheets) {
+          if (sheets.hasOwnProperty(sheet)) {
+            list = list.concat(XLSX.utils.sheet_to_json(sheets[sheet]));
+          }
+      }
+        console.log(list);
+        alert(list);
+      }
+    };
     xmlhttp.send();
-    if (xmlhttp.status==200) {
-      result = xmlhttp.responseText;
-    }
-    // alert(result);
-    // return result;
-    var data = result;
-    var workbook = XLSX.read(data, {
-      type: 'binary'
-    });
-    workbook.SheetNames.forEach(function(sheetName) {
-      // Here is your object
-      var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-      var json_object = JSON.stringify(XL_row_object);
-      // json_object = json_object.replace('[', '');
-      // json_object = json_object.replace(']', '');
-      // console.log(json_object);
-      alert('123');
-      alert(json_object);
-    })
   }
   var myStuff = loadFileV2("files/testhtml.xlsx");
   // alert(myStuff);
