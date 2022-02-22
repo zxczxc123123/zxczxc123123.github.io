@@ -92,17 +92,17 @@
         //把excel除了標頭以外的資料都放入tArray
         for(var k=0;k<list.length;k++){
           //把row data 放入一維陣列
-          //var rowdata=[list[k].日期(當周),list[k].Topic,list[k].報告者,list[k].週數,list[k].report_upload,list[k].report_path];
+          var rowdata=[list[k].date,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
           //把row data 放入二維陣列
-          //tArray[k]=[rowdata[0],rowdata[1],rowdata[2],rowdata[3],rowdata[4],rowdata[5]];
-          tArray[k]=[list[k].date,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
+          tArray[k]=[rowdata[0],rowdata[1],rowdata[2],rowdata[3],rowdata[4],rowdata[5]];
+          //tArray[k]=[list[k].date,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
         }
       	console.log(list);
-        alert('741');
+        alert('841');
         alert(tArray[111]);
         alert(tArray[111].Topic);
-	alert(tArray[111].report_path);
-	alert(tArray[111].week);
+	alert(tArray[111][1]);
+	alert(tArray[111][0]);
         alert('321');
       }
     };
