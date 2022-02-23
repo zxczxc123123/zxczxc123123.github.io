@@ -7,6 +7,13 @@
     <script> 
       var glo="glo123";
       function loadexcel(){ 
+      var Today=new Date();
+      sDate2="2/21/22";
+      var oDate2 = new Date(sDate2);
+      // var iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24)
+      var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
+      // alert("相差"+iDays+"天");
+      // alert(iDays>0)
       var testtemp='test';
       document.myForm.report_select.length=0;
       document.getElementById("report_select").options[0]=new Option(glo, glo);
@@ -97,17 +104,31 @@
           tArray[k]=[rowdata[0],rowdata[1],rowdata[2],rowdata[3],rowdata[4],rowdata[5]];
           //tArray[k]=[list[k].reportdate,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
         }
-      	console.log(list);
-        alert('41');
-        alert(tArray[111]);
-	alert(tArray[111][1]);
-	alert(tArray[111][0]);
-        alert('321');
+        //獲得現在系統時間
+        var Today=new Date();
+        var sDate2=tArray[111][0];
+        var oDate2 = new Date(sDate2);
+        var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
+        alert("相差"+iDays+"天");
+        alert(iDays>0)
+
+        var sDate2=tArray[114][0];
+        var oDate2 = new Date(sDate2);
+        var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
+        alert("相差"+iDays+"天");
+        alert(iDays>0)
+
+
+        // alert("今天日期是 " + Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日");
+        // alert('456');
+        // alert(tArray[0]);
+        // alert(tArray[0][0]);
+        // alert('123');
       }
     };
     xmlhttp.send();
   }
-  var myStuff = loadFileV2("files/CEO_tracking_list.xlsx");
+  // var myStuff = loadFileV2("files/CEO_tracking_list.xlsx");
   // alert(myStuff);
 </script>
 
