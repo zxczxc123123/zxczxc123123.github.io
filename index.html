@@ -7,11 +7,10 @@
     <script> 
       var glo="glo123";
       function loadexcel(){ 
-      var Today=new Date();
-      sDate2="2/21/22";
-      var oDate2 = new Date(sDate2);
-      // var iDays = parseInt(Math.abs(oDate1 - oDate2) / 1000 / 60 / 60 / 24)
-      var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
+      // var Today=new Date();
+      // sDate2="2/21/22";
+      // var oDate2 = new Date(sDate2);
+      // var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
       // alert("相差"+iDays+"天");
       // alert(iDays>0)
       var testtemp='test';
@@ -105,21 +104,58 @@
           //tArray[k]=[list[k].reportdate,list[k].Topic,list[k].reporter,list[k].week,list[k].report_upload,list[k].report_path];
         }
         //獲得現在系統時間
-	alert(tArray[111][0]);
         var Today=new Date();
-        var sDate2=tArray[111][0];
-        var oDate2 = new Date(sDate2);
-        var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
-        alert("相差"+iDays+"天");
-        alert(iDays>0)
-	alert(tArray[114][0]);
-        var sDate2=tArray[114][0];
-        var oDate2 = new Date(sDate2);
-        var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
-        alert("相差"+iDays+"天");
-        alert(iDays>0)
+        var Todayindex=0
+        //抓取現在時間在Excel內的index
+        for(var k=tArray.length-1;k>0;k--){
+          var sDate2=tArray[k][0];
+          var oDate2 = new Date(sDate2);
+          var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
+          if(tArray[k][2]!='輪空一次' && tArray[k][2]!='Antenna team' && tArray[k][2]!='Module team' && iDays>-31 && tArray[k][4]=='1'){
+            Todayindex=k;
+            break;
+          }
+        }
+        //宣告/初始化 reportlsit ，此陣列內容後續放到
+        var reportlsit = new Array(); //先宣告一維
+        var count=0
+        while(count!=4){
+          if(tArray[Todayindex][2]!='輪空一次' && tArray[Todayindex][2]!='Antenna team' && tArray[Todayindex][2]!='Module team' && tArray[Todayindex][4]=='1'){
+            //代表有上傳report要列出來
+            var tempdate=""
+            var tempdateSplit=tArray[Todayindex][0].split("/");
+            tempdate="20"+tempdateSplit[0];//Year
+            if(tempdateSplit[1]<10){//Month
+              tempdate=tempdate+"/0"+tempdateSplit[1];
+            }
+            else{
+              tempdate=tempdate+"/"+tempdateSplit[1];
+            }
+            if(tempdateSplit[2]<10){//Day
+              tempdate=tempdate+"/0"+tempdateSplit[2];
+            }
+            else{
+              tempdate=tempdate+"/"+tempdateSplit[2];
+            }
+            var temp=tArray[Todayindex][3]+"_"+tempdate+"_"+tArray[Todayindex][2]+"_"+tArray[Todayindex][1];
+            reportlsit[count]=temp;
+            count=count+1;
+          }
+          Todayindex=Todayindex-1
+          if (Todayindex==0){
+            break
+          }
+        }
 
-	console.log(list)
+
+        // var sDate2=tArray[111][0];
+        // var oDate2 = new Date(sDate2);
+        // var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
+        // alert("相差"+iDays+"天");
+        // alert(iDays>0)
+        alert("123");
+        console.log(reportlsit);
+        console.log(list);
         // alert("今天日期是 " + Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日");
         // alert('456');
         // alert(tArray[0]);
@@ -129,7 +165,7 @@
     };
     xmlhttp.send();
   }
-   var myStuff = loadFileV2("files/CEO_tracking_list.xlsx");
+  var myStuff = loadFileV2("files/CEO_tracking_list.xlsx");
   // alert(myStuff);
 </script>
 
