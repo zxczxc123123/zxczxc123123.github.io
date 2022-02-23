@@ -5,7 +5,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script> 
-      var glo="glo123";
       function loadexcel(){ 
       // var Today=new Date();
       // sDate2="2/21/22";
@@ -13,17 +12,16 @@
       // var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
       // alert("相差"+iDays+"天");
       // alert(iDays>0)
-      var testtemp='test';
       // document.myForm.report_select.length=0;
       // document.getElementById("report_select").options[0]=new Option("123", glo);
       
       // download();
-      alert("頁面載入完成"); 
+      // alert("頁面載入完成"); 
       } 
     </script>
 </head>
 
-<body style="background-color:rgba(233, 236, 239);"onload="loadexcel()">
+<body style="background-color:rgba(233, 236, 239);">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -152,19 +150,9 @@
         }
         
 
-        // var sDate2=tArray[111][0];
-        // var oDate2 = new Date(sDate2);
-        // var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
-        // alert("相差"+iDays+"天");
-        // alert(iDays>0)
-        alert("123");
-        console.log(reportlsit);
-        console.log(list);
-        // alert("今天日期是 " + Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日");
-        // alert('456');
-        // alert(tArray[0]);
-        // alert(tArray[0][0]);
-        // alert('123');
+        // alert("123");
+        // console.log(reportlsit);
+        // console.log(list);
       }
     };
     xmlhttp.send();
@@ -251,10 +239,7 @@
       
       <div class="col-auto" style="width:50%">
         <select class="form-control form-control-sm"name="report_select"id="report_select" style="height: 50px;"required>
-          <option name="index_test" value="index_test">123</option>
-          {% for i in report_list %}
-          <option name="index_{{i[1]}}" value="index_{{i[1]}}">{{i[0]}}</option>
-          {% endfor %}
+          <option name="index_0" value="index_0"></option>
         </select>
         <div style="height: 5px">
           <div class="container">
