@@ -14,8 +14,8 @@
       // alert("相差"+iDays+"天");
       // alert(iDays>0)
       var testtemp='test';
-      document.myForm.report_select.length=0;
-      document.getElementById("report_select").options[0]=new Option(glo, glo);
+      // document.myForm.report_select.length=0;
+      // document.getElementById("report_select").options[0]=new Option("123", glo);
       
       // download();
       alert("頁面載入完成"); 
@@ -146,14 +146,18 @@
             break
           }
         }
-
+        document.myForm.report_select.length=0;
+        for(var k=0;k<reportlsit.length;k++){
+          document.getElementById("report_select").options[k]=new Option(reportlsit[k], "index_"+String(k));
+        }
+        
 
         // var sDate2=tArray[111][0];
         // var oDate2 = new Date(sDate2);
         // var iDays=parseInt((Today.getTime()-oDate2.getTime())/ 1000 / 60 / 60 / 24)
         // alert("相差"+iDays+"天");
         // alert(iDays>0)
-        alert("456");
+        alert("123");
         console.log(reportlsit);
         console.log(list);
         // alert("今天日期是 " + Today.getFullYear()+ " 年 " + (Today.getMonth()+1) + " 月 " + Today.getDate() + " 日");
