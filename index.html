@@ -73,7 +73,7 @@
   function loadFileV2(filePath) {
     var result = null;
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", filePath,true,'asus\jerry_hung','!qazje6209');
+    xmlhttp.open("GET", filePath,true);
     xmlhttp.responseType = 'arraybuffer';
     xmlhttp.onload = function(e) {
       if(xmlhttp.status == 200) {
