@@ -124,18 +124,18 @@
             //代表有上傳report要列出來
             var tempdate=""
             var tempdateSplit=tArray[Todayindex][0].split("/");
-            tempdate="20"+tempdateSplit[0];//Year
-            if(tempdateSplit[1]<10){//Month
+            tempdate="20"+tempdateSplit[2];//Year
+            if(tempdateSplit[0]<10){//Month
+              tempdate=tempdate+"/0"+tempdateSplit[0];
+            }
+            else{
+              tempdate=tempdate+"/"+tempdateSplit[0];
+            }
+            if(tempdateSplit[1]<10){//Day
               tempdate=tempdate+"/0"+tempdateSplit[1];
             }
             else{
               tempdate=tempdate+"/"+tempdateSplit[1];
-            }
-            if(tempdateSplit[2]<10){//Day
-              tempdate=tempdate+"/0"+tempdateSplit[2];
-            }
-            else{
-              tempdate=tempdate+"/"+tempdateSplit[2];
             }
             var temp=tArray[Todayindex][3]+"_"+tempdate+"_"+tArray[Todayindex][2]+"_"+tArray[Todayindex][1];
             reportlsit[count]=temp;
