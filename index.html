@@ -42,8 +42,10 @@
 
 <script>
   function download(){
-    document.myForm.report_select.length=0;
-    document.getElementById("report_select").options[0]=new Option("zxczxc", "zxczxc");
+    // window.open('//corpnet.asus/ASUSFS/RF_Module_Antenna_techfiles/RF Division/天線資訊匯集/B_天線評估與各時期特性記錄(POR)/private/天線報告/測試文件/jerrytest.txt');
+    window.location = '//corpnet.asus/ASUSFS/RF_Module_Antenna_techfiles/RF Division/天線資訊匯集/B_天線評估與各時期特性記錄(POR)/private/天線報告/測試文件/檔案上傳_測試/02071709_Marco1_Wang_UP6502 lesson learn - TAS and NDT.pdf';
+    // document.myForm.report_select.length=0;
+    // document.getElementById("report_select").options[0]=new Option("zxczxc", "zxczxc");
     // document.getElementById("index_test").options[0]="zxc";
   }
 </script>
@@ -157,7 +159,7 @@
     };
     xmlhttp.send();
   }
-  // var myStuff = loadFileV2("files/CEO_tracking_list.xlsx");
+  var myStuff = loadFileV2("//corpnet.asus/ASUSFS/RF_Module_Antenna_techfiles/RF Division/天線資訊匯集/B_天線評估與各時期特性記錄(POR)/private/天線報告/測試文件/CEO_tracking_list.xlsx");
   // alert(myStuff);
 </script>
 
@@ -267,9 +269,6 @@
     </div>
   </div>
   </form>
-
-  <script src="scripts/copyfile.js"></script>
-
 </body>
 
 </html>
